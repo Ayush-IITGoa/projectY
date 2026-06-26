@@ -1,0 +1,66 @@
+Device: cuda | alpha: 0.5 | T: 4.0
+
+============================================================
+TASK: RTE
+============================================================
+Train: 2490  Dev: 277
+Phase 1: fine-tuning teacher
+  [teacher] epoch 0: acc=0.5921
+  [teacher] epoch 1: acc=0.6245
+  [teacher] epoch 2: acc=0.6209
+  [teacher] epoch 3: acc=0.6029
+  [teacher] epoch 4: acc=0.6209
+  [teacher] epoch 5: acc=0.6173
+Phase 2: distilling student
+Student params: 45,693,701 (68.2% of teacher)
+  [student] epoch 0: acc=0.6101
+  [student] epoch 1: acc=0.5740
+  [student] epoch 2: acc=0.5848
+  [student] epoch 3: acc=0.5957
+  [student] epoch 4: acc=0.6173
+  [student] epoch 5: acc=0.6029
+BEST rte: acc=0.6173
+
+
+============================================================
+TASK: STSB
+============================================================
+Train: 5749  Dev: 1500
+Phase 1: fine-tuning teacher
+Some weights of DistilBertForSequenceClassification were not initialized from the model checkpoint at ./local_distilbert and are newly initialized: ['classifier.bias', 'classifier.weight', 'pre_classifier.bias', 'pre_classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+  [teacher] epoch 0: pearson=0.8489  spearman=0.8552
+  [teacher] epoch 1: pearson=0.8666  spearman=0.8640
+  [teacher] epoch 2: pearson=0.8715  spearman=0.8699
+  [teacher] epoch 3: pearson=0.8707  spearman=0.8685
+  [teacher] epoch 4: pearson=0.8702  spearman=0.8674
+Phase 2: distilling student
+Student params: 45,692,932 (68.2% of teacher)
+  [student] epoch 0: pearson=0.8340  spearman=0.8365
+  [student] epoch 1: pearson=0.8407  spearman=0.8440
+  [student] epoch 2: pearson=0.8491  spearman=0.8489
+  [student] epoch 3: pearson=0.8539  spearman=0.8530
+  [student] epoch 4: pearson=0.8513  spearman=0.8510
+BEST stsb: pearson=0.8539  spearman=0.8530
+
+============================================================
+TASK: QNLI
+============================================================
+Train: 104743  Dev: 5463
+Phase 1: fine-tuning teacher
+Some weights of DistilBertForSequenceClassification were not initialized from the model checkpoint at ./local_distilbert and are newly initialized: ['classifier.bias', 'classifier.weight', 'pre_classifier.bias', 'pre_classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+  [teacher] epoch 0: acc=0.8726
+  [teacher] epoch 1: acc=0.8830
+  [teacher] epoch 2: acc=0.8850
+Phase 2: distilling student
+Student params: 45,693,701 (68.2% of teacher)
+  [student] epoch 0: acc=0.8623
+  [student] epoch 1: acc=0.8677
+  [student] epoch 2: acc=0.8689
+BEST qnli: acc=0.8689
+
+============================================================
+SUMMARY (distilled student)
+============================================================
+QNLI    acc=0.8689
